@@ -1,3 +1,5 @@
 .vs/
 EnglishLearningApp/bin/
 EnglishLearningApp/obj/
+EnglishLearningApp.tests/bin/
+EnglishLearningApp.tests/obj/
