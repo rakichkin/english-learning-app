@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EnglishLearningApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,16 @@ namespace EnglishLearningApp
 	/// </summary>
 	public partial class App : Application
 	{
+		protected override void OnStartup(StartupEventArgs e)
+		{
+			MainWindow = new MainWindow()
+			{
+				DataContext = new MainViewModel()
+			};
+			MainWindow.Show();
+
+
+			base.OnStartup(e);
+		}
 	}
 }

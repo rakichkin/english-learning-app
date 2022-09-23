@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Stores\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="GemBox.Document" Version="35.0.1105" />
   </ItemGroup>
 

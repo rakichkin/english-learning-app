@@ -8,6 +8,6 @@
         mc:Ignorable="d"
         Title="English learning" Height="350" Width="600">
     <Grid>
-        <views:StartupView />
+        <views:StartupView DataContext="{Binding CurrentViewModel}"/>
     </Grid>
 </Window>
