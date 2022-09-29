@@ -7,6 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="{Binding Word}" FontSize="30"/>
+            <TextBox Text="{Binding Translation}" Height="100"/>
+            <Button Content="Pass" Command="{Binding CheckAnswerCommand}" Height="100"/>
+            <TextBlock Text="{Binding Result}" FontSize="30" />
+            <Button Content="Next word" Command="{Binding NextWordCommand}" Height="100"/>
+        </StackPanel>
     </Grid>
 </UserControl>

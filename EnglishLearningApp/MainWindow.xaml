@@ -5,9 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EnglishLearningApp"
         xmlns:views="clr-namespace:EnglishLearningApp.Views"
+        xmlns:vms="clr-namespace:EnglishLearningApp.ViewModels"
         mc:Ignorable="d"
         Title="English learning" Height="350" Width="600">
     <Grid>
-        <views:StartupView DataContext="{Binding CurrentViewModel}"/>
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type vms:StartupViewModel}">
+                <views:StartupView />
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type vms:TestViewModel}">
+                <views:TestView />
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type vms:FinalViewModel}">
+                <views:FinalView />
+            </DataTemplate>
+        </Grid.Resources>
+        
+        <ContentControl Content="{Binding CurrentViewModel}" />
     </Grid>
 </Window>

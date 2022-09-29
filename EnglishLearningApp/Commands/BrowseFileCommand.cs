@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using EnglishLearningApp.Services;
+using EnglishLearningApp.ViewModels;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using EnglishLearningApp.Services;
-using EnglishLearningApp.ViewModels;
 
 namespace EnglishLearningApp.Commands
 {
@@ -27,6 +22,8 @@ namespace EnglishLearningApp.Commands
 				_startupViewModel.WordTranslationPairs = Path.GetExtension(defaultDialogService.PathToFile) == ".docx"
 					? ParsingTextFileService.ParseDocxFile(defaultDialogService.PathToFile)
 					: ParsingTextFileService.ParseTxtFile(defaultDialogService.PathToFile);
+
+				_startupViewModel.CountOfWords = _startupViewModel.WordTranslationPairs.Count();
 			}
 		}
 	}
