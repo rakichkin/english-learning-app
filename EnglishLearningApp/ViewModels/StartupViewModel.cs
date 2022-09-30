@@ -87,7 +87,7 @@ namespace EnglishLearningApp.ViewModels
 		public StartupViewModel(NavigationStore navigationStore)
 		{
 			BrowseFileCommand = new BrowseFileCommand(this);
-			StartCommand = new NavigateCommand(this, navigationStore);
+			StartCommand = new ShowTestViewCommand(this, navigationStore);
 
 			IsSequentialChecked = true;
 			IsWordToTranslationChecked = true;

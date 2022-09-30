@@ -5,14 +5,34 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EnglishLearningApp.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="350" d:DesignWidth="600">
     <Grid>
         <StackPanel Orientation="Vertical">
-            <TextBlock Text="{Binding Word}" FontSize="30"/>
-            <TextBox Text="{Binding Translation}" Height="100"/>
-            <Button Content="Pass" Command="{Binding CheckAnswerCommand}" Height="100"/>
-            <TextBlock Text="{Binding Result}" FontSize="30" />
-            <Button Content="Next word" Command="{Binding NextWordCommand}" Height="100"/>
+            <TextBlock Text="{Binding Word}"
+                       FontSize="60"
+                       TextAlignment="Center"
+                       Margin="0 20 0 0"/>
+            <TextBox Text="{Binding InputTranslation}"
+                     Height="50"
+                     Width="300"
+                     FontSize="30"
+                     TextAlignment="Center"
+                     Margin="0 0 0 15"/>
+            <Button Content="Pass"
+                    Command="{Binding CheckAnswerCommand}"
+                    Height="50"
+                    Width="150"
+                    FontSize="25"
+                    Margin="0 0 0 15"/>
+            <TextBlock Text="{Binding Result}"
+                       FontSize="30" 
+                       TextAlignment="Center"
+                       Margin="0 0 0 15"/>
+            <Button Content="Next word"
+                    Command="{Binding PrintNextWordCommand}"
+                    Height="50"
+                    Width="200"
+                    FontSize="20"/>
         </StackPanel>
     </Grid>
 </UserControl>

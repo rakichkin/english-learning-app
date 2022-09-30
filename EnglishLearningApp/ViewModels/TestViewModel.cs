@@ -1,5 +1,6 @@
 ﻿using EnglishLearningApp.Commands;
 using EnglishLearningApp.Models;
+using EnglishLearningApp.Stores;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -10,8 +11,10 @@ namespace EnglishLearningApp.ViewModels
 {
 	public class TestViewModel : ViewModelBase
 	{
-		private readonly List<WordTranslationModel> _wordTranslationPairs;
-		private readonly bool _isRandomChecked;
+		private readonly NavigationStore _navigationStore;
+
+		private readonly bool _isTranslationToWordChecked;
+		public List<WordTranslationModel> WordTranslationPairs { get; }
 
 		private string _word;
 		public string Word
@@ -27,17 +30,17 @@ namespace EnglishLearningApp.ViewModels
 			}
 		}
 
-		private string _translation;
-		public string Translation
+		private string _inputTranslation;
+		public string InputTranslation
 		{
 			get
 			{
-				return _translation;
+				return _inputTranslation;
 			}
 			set
 			{
-				_translation = value;
-				OnPropertyChanged(nameof(Translation));
+				_inputTranslation = value;
+				OnPropertyChanged(nameof(InputTranslation));
 			}
 		}
 
@@ -55,49 +58,46 @@ namespace EnglishLearningApp.ViewModels
 			}
 		}
 
-		public ICommand CheckAnswerCommand { get; }
-		public ICommand NextWordCommand { get; }
+		public int CurrentIndexInList { get; set; }
 
-		public TestViewModel(StartupViewModel startupViewModel)
+		public ICommand CheckAnswerCommand { get; }
+		public ICommand PrintNextWordCommand { get; }
+
+		public TestViewModel(StartupViewModel startupViewModel, NavigationStore navigationStore)
 		{
-			_wordTranslationPairs = startupViewModel.WordTranslationPairs;
-			_isRandomChecked = startupViewModel.IsRandomChecked;
+			_navigationStore = navigationStore;
+
+			WordTranslationPairs = startupViewModel.WordTranslationPairs;
+			_isTranslationToWordChecked = startupViewModel.IsTranslationToWordChecked;
 
 			CheckAnswerCommand = new CheckAnswerCommand(this);
-			NextWordCommand = new NextWordCommand();
+			PrintNextWordCommand = new PrintNextWordCommand(this);
 
 			if(startupViewModel.IsRandomChecked)
 			{
 				ShuffleElementsInList();
 			}
 
-			if(startupViewModel.CountOfWords < _wordTranslationPairs.Count)
+			if(startupViewModel.CountOfWords < WordTranslationPairs.Count)
 			{
-				_wordTranslationPairs.RemoveRange(startupViewModel.CountOfWords, _wordTranslationPairs.Count - startupViewModel.CountOfWords);
+				WordTranslationPairs.RemoveRange(startupViewModel.CountOfWords, WordTranslationPairs.Count - startupViewModel.CountOfWords);
 			}
 
-			StartTest();
-		}
-
-		private void StartTest()
-		{
-			foreach(var pair in _wordTranslationPairs)
-			{
-				
-			}
+			CurrentIndexInList = 0;
+			Word = WordTranslationPairs[CurrentIndexInList].Word;
 		}
 
 		private void ShuffleElementsInList()
 		{
 			var random = new Random();
 
-			for(int i = _wordTranslationPairs.Count - 1; i >= 1; i--)
+			for(int i = WordTranslationPairs.Count - 1; i >= 1; i--)
 			{
 				int j = random.Next(i + 1);
 
-				var temp = _wordTranslationPairs[j];
-				_wordTranslationPairs[j] = _wordTranslationPairs[i];
-				_wordTranslationPairs[i] = temp;
+				var temp = WordTranslationPairs[j];
+				WordTranslationPairs[j] = WordTranslationPairs[i];
+				WordTranslationPairs[i] = temp;
 			}
 		}
 	}

@@ -6,9 +6,6 @@ namespace EnglishLearningApp.Commands
 	{
 		private readonly TestViewModel _testViewModel;
 
-		public string Word { get; set; }
-		public string Translation { get; set; }
-
 		public CheckAnswerCommand(TestViewModel testViewModel)
 		{
 			_testViewModel = testViewModel;
@@ -16,13 +13,14 @@ namespace EnglishLearningApp.Commands
 
 		public override void Execute(object? parameter)
 		{
-			if(Word.Equals(Translation))
+			var currentPair = _testViewModel.WordTranslationPairs[_testViewModel.CurrentIndexInList];
+			if(currentPair.Translation.Equals(_testViewModel.InputTranslation))
 			{
-				_testViewModel.Result = "True";
+				_testViewModel.Result = "The answer is correct!";
 			}
 			else
 			{
-				_testViewModel.Result = $"False. {Translation}";
+				_testViewModel.Result = $"Wrong. Correct translation is {currentPair.Translation}";
 			}
 		}
 	}
