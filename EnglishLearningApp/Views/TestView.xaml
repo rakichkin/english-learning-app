@@ -8,10 +8,14 @@
              d:DesignHeight="350" d:DesignWidth="600">
     <Grid>
         <StackPanel Orientation="Vertical">
+            <TextBlock Text="{Binding Progress}"
+                       FontSize="20"
+                       TextAlignment="Center" />
+
             <TextBlock Text="{Binding Word}"
                        FontSize="60"
                        TextAlignment="Center"
-                       Margin="0 20 0 0"/>
+                       Margin="0 5 0 0"/>
             <TextBox Text="{Binding InputTranslation}"
                      Height="50"
                      Width="300"

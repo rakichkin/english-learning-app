@@ -4,13 +4,7 @@ namespace EnglishLearningApp.Services
 {
 	public class DefaultDialogService
 	{
-		//private readonly StartupViewModel _startupViewModel;
 		public string PathToFile { get; set; }
-
-		//public DefaultDialogService(StartupViewModel startupViewModel)
-		//{
-		//	_startupViewModel = startupViewModel;
-		//}
 
 		public bool OpenFileDialog()
 		{

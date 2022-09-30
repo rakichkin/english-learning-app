@@ -1,6 +1,7 @@
-﻿using EnglishLearningApp.Stores;
+﻿using System.Windows;
+
+using EnglishLearningApp.Stores;
 using EnglishLearningApp.ViewModels;
-using System.Windows;
 
 namespace EnglishLearningApp
 {

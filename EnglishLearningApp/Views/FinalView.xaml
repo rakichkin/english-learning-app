@@ -7,6 +7,19 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="0.5*" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding Conclusion}"
+                   Grid.Row="0"
+                   TextAlignment="Center"
+                   VerticalAlignment="Bottom" />
+        <Button Content="Try again"
+                Command="{Binding TryAgainCommand}"
+                Grid.Row="1"
+                Width="200"
+                Height="50" 
+                VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

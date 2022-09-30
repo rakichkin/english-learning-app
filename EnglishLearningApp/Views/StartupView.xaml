@@ -34,21 +34,6 @@
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="Word output order"/>
-                    <RadioButton Content="Sequential"
-                                 Grid.Row="1"
-                                 IsChecked="{Binding IsSequentialChecked}" />
-                    <RadioButton Content="Random"
-                                 Grid.Row="2"
-                                 IsChecked="{Binding IsRandomChecked}" />
-                </Grid>
-
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="Хз как это обозвать"/>
                     <RadioButton Content="Word -> translation"
                                  Grid.Row="1"
@@ -57,6 +42,7 @@
                                  Grid.Row="2"
                                  IsChecked="{Binding IsTranslationToWordChecked}" />
                 </Grid>
+                <CheckBox Content="Shuffle elements from file" IsChecked="{Binding ShuffleElements}"/>
             </StackPanel>
             <Button Content="Browse file" 
                     Grid.Row="2" 

@@ -1,8 +1,9 @@
-﻿using EnglishLearningApp.Commands;
+﻿using System.Collections.Generic;
+using System.Windows.Input;
+
+using EnglishLearningApp.Commands;
 using EnglishLearningApp.Models;
 using EnglishLearningApp.Stores;
-using System.Collections.Generic;
-using System.Windows.Input;
 
 namespace EnglishLearningApp.ViewModels
 {
@@ -25,31 +26,17 @@ namespace EnglishLearningApp.ViewModels
 			}
 		}
 
-		private bool _isSequentialChecked;
-		public bool IsSequentialChecked
+		private bool _shuffleElements;
+		public bool ShuffleElements
 		{
 			get
 			{
-				return _isSequentialChecked;
+				return _shuffleElements;
 			}
 			set
 			{
-				_isSequentialChecked = value;
-				OnPropertyChanged(nameof(IsSequentialChecked));
-			}
-		}
-
-		private bool _isRandomChecked;
-		public bool IsRandomChecked
-		{
-			get
-			{
-				return _isRandomChecked;
-			}
-			set
-			{
-				_isRandomChecked = value;
-				OnPropertyChanged(nameof(IsRandomChecked));
+				_shuffleElements = value;
+				OnPropertyChanged(nameof(ShuffleElements));
 			}
 		}
 
@@ -89,7 +76,6 @@ namespace EnglishLearningApp.ViewModels
 			BrowseFileCommand = new BrowseFileCommand(this);
 			StartCommand = new ShowTestViewCommand(this, navigationStore);
 
-			IsSequentialChecked = true;
 			IsWordToTranslationChecked = true;
 		}
 	}

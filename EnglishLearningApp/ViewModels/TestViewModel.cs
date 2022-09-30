@@ -1,20 +1,35 @@
-﻿using EnglishLearningApp.Commands;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Input;
+
+using EnglishLearningApp.Commands;
 using EnglishLearningApp.Models;
 using EnglishLearningApp.Stores;
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Windows.Input;
-using System.Windows.Markup;
 
 namespace EnglishLearningApp.ViewModels
 {
 	public class TestViewModel : ViewModelBase
 	{
 		private readonly NavigationStore _navigationStore;
-
 		private readonly bool _isTranslationToWordChecked;
+
 		public List<WordTranslationModel> WordTranslationPairs { get; }
+		public int CountOfCorrectAnswers { get; set; } = 0;
+		public int CurrentIndexInList { get; set; } = 0;
+
+		private string _progress;
+		public string Progress
+		{
+			get
+			{
+				return _progress;
+			}
+			set
+			{
+				_progress = value;
+				OnPropertyChanged(nameof(Progress));
+			}
+		}
 
 		private string _word;
 		public string Word
@@ -58,8 +73,6 @@ namespace EnglishLearningApp.ViewModels
 			}
 		}
 
-		public int CurrentIndexInList { get; set; }
-
 		public ICommand CheckAnswerCommand { get; }
 		public ICommand PrintNextWordCommand { get; }
 
@@ -71,9 +84,9 @@ namespace EnglishLearningApp.ViewModels
 			_isTranslationToWordChecked = startupViewModel.IsTranslationToWordChecked;
 
 			CheckAnswerCommand = new CheckAnswerCommand(this);
-			PrintNextWordCommand = new PrintNextWordCommand(this);
+			PrintNextWordCommand = new GoToNextStepCommand(this, _navigationStore);
 
-			if(startupViewModel.IsRandomChecked)
+			if(startupViewModel.ShuffleElements)
 			{
 				ShuffleElementsInList();
 			}
@@ -83,7 +96,7 @@ namespace EnglishLearningApp.ViewModels
 				WordTranslationPairs.RemoveRange(startupViewModel.CountOfWords, WordTranslationPairs.Count - startupViewModel.CountOfWords);
 			}
 
-			CurrentIndexInList = 0;
+			Progress = $"Word {CurrentIndexInList + 1}/{WordTranslationPairs.Count}";
 			Word = WordTranslationPairs[CurrentIndexInList].Word;
 		}
 

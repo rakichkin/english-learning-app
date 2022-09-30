@@ -17,6 +17,7 @@ namespace EnglishLearningApp.Commands
 			if(currentPair.Translation.Equals(_testViewModel.InputTranslation))
 			{
 				_testViewModel.Result = "The answer is correct!";
+				_testViewModel.CountOfCorrectAnswers++;
 			}
 			else
 			{

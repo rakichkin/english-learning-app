@@ -1,12 +1,13 @@
-﻿using EnglishLearningApp.ViewModels;
-using System;
+﻿using System;
+
+using EnglishLearningApp.ViewModels;
 
 namespace EnglishLearningApp.Stores
 {
 	public class NavigationStore
 	{
 		public event Action CurrentViewModelChanged;
- 
+
 		private ViewModelBase _currentViewModel;
 		public ViewModelBase CurrentViewModel
 		{
