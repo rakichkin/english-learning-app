@@ -9,7 +9,6 @@ namespace EnglishLearningApp.ViewModels
 {
 	public class StartupViewModel : ViewModelBase
 	{
-		public string PathToFile { get; set; }
 		public List<WordTranslationModel> WordTranslationPairs { get; set; }
 
 		private int _countOfWords;
@@ -65,6 +64,20 @@ namespace EnglishLearningApp.ViewModels
 			{
 				_isTranslationToWordChecked = value;
 				OnPropertyChanged(nameof(IsTranslationToWordChecked));
+			}
+		}
+
+		private bool _isFileLoaded;
+		public bool IsFileLoaded
+		{
+			get
+			{
+				return _isFileLoaded;
+			}
+			set
+			{
+				_isFileLoaded = value;
+				OnPropertyChanged(nameof(IsFileLoaded));
 			}
 		}
 

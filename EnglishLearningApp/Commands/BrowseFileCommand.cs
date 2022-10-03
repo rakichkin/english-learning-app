@@ -25,7 +25,14 @@ namespace EnglishLearningApp.Commands
 					: ParsingTextFileService.ParseTxtFile(defaultDialogService.PathToFile);
 
 				_startupViewModel.CountOfWords = _startupViewModel.WordTranslationPairs.Count();
+
+				_startupViewModel.IsFileLoaded = true;
 			}
+		}
+
+		public override bool CanExecute(object? parameter)
+		{
+			return base.CanExecute(parameter);
 		}
 	}
 }

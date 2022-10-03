@@ -73,8 +73,36 @@ namespace EnglishLearningApp.ViewModels
 			}
 		}
 
+		private string _nextStepBtnContent;
+		public string NextStepBtnContent
+		{
+			get
+			{
+				return _nextStepBtnContent;
+			}
+			set
+			{
+				_nextStepBtnContent = value;
+				OnPropertyChanged(nameof(NextStepBtnContent));
+			}
+		}
+
+		private bool _isTranslationChecked;
+		public bool IsTranslationChecked
+		{
+			get
+			{
+				return _isTranslationChecked;
+			}
+			set
+			{
+				_isTranslationChecked = value;
+				OnPropertyChanged(nameof(IsTranslationChecked));
+			}
+		}
+
 		public ICommand CheckAnswerCommand { get; }
-		public ICommand PrintNextWordCommand { get; }
+		public ICommand PrintNextWordCommand { get; } // rename to NextStepCommand
 
 		public TestViewModel(StartupViewModel startupViewModel, NavigationStore navigationStore)
 		{
@@ -98,6 +126,7 @@ namespace EnglishLearningApp.ViewModels
 
 			Progress = $"Word {CurrentIndexInList + 1}/{WordTranslationPairs.Count}";
 			Word = WordTranslationPairs[CurrentIndexInList].Word;
+			NextStepBtnContent = "Next word";
 		}
 
 		private void ShuffleElementsInList()

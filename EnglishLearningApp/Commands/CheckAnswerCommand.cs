@@ -1,4 +1,5 @@
 ﻿using EnglishLearningApp.ViewModels;
+using System.ComponentModel;
 
 namespace EnglishLearningApp.Commands
 {
@@ -9,6 +10,8 @@ namespace EnglishLearningApp.Commands
 		public CheckAnswerCommand(TestViewModel testViewModel)
 		{
 			_testViewModel = testViewModel;
+
+			_testViewModel.PropertyChanged += OnViewModelPropertyChanged;
 		}
 
 		public override void Execute(object? parameter)
@@ -23,6 +26,20 @@ namespace EnglishLearningApp.Commands
 			{
 				_testViewModel.Result = $"Wrong. Correct translation is {currentPair.Translation}";
 			}
+			_testViewModel.IsTranslationChecked = true;
+		}
+
+		private void OnViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
+		{
+			if(e.PropertyName == nameof(_testViewModel.InputTranslation))
+			{
+				OnCanExectuteChanged();
+			}
+		}
+
+		public override bool CanExecute(object? parameter)
+		{
+			return !string.IsNullOrEmpty(_testViewModel.InputTranslation) && base.CanExecute(parameter);
 		}
 	}
 }

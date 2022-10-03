@@ -3,6 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:EnglishLearningApp">
     <Application.Resources>
-         
+        <Style x:Key="FocusTextBox" TargetType="Grid">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=AnswerTxtBox, Path=IsVisible}" Value="True">
+                    <Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=AnswerTxtBox}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Application.Resources>
 </Application>

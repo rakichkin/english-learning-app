@@ -8,7 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GemBox.Document" Version="35.0.1105" />
+    <None Remove="e-letter-logo-png-1415-32x32.ico" />
+    <None Remove="Icons\icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.18.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Icons\icon.ico" />
   </ItemGroup>
 
 </Project>

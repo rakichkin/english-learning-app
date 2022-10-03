@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-using GemBox.Document;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 using EnglishLearningApp.Models;
 
@@ -12,11 +13,17 @@ namespace EnglishLearningApp.Services
 {
 	public static class ParsingTextFileService
 	{
-		public static List<WordTranslationModel> ParseDocxFile(string path)
+		public static List<WordTranslationModel> ParseDocxFile(string path) // https://learn.microsoft.com/en-us/answers/questions/340644/what39s-the-fastest-way-to-read-a-docx-file-line-b.html
 		{
-			ComponentInfo.SetLicense("FREE-LIMITED-KEY");
-			var document = DocumentModel.Load(path);
-			string text = document.Content.ToString();
+			string text = string.Empty;
+			using(WordprocessingDocument wordDocument = WordprocessingDocument.Open(path, false))
+			{
+				var body = wordDocument.MainDocumentPart.Document.Body;
+				foreach(Paragraph p in wordDocument.MainDocumentPart.Document.Body.Descendants<Paragraph>())
+				{
+					text += p.InnerText.ToString() + '\n';
+				}
+			}
 
 			var wordsAndTranslations = SplitText(text);
 			return wordsAndTranslations;

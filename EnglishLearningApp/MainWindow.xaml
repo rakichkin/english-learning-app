@@ -7,9 +7,13 @@
         xmlns:views="clr-namespace:EnglishLearningApp.Views"
         xmlns:vms="clr-namespace:EnglishLearningApp.ViewModels"
         mc:Ignorable="d"
-        Title="English learning" 
-        Height="400" 
-        Width="600">
+        Title="English learning app" 
+        Width="600"
+        Height="400"
+        MinWidth="600"
+        SizeToContent="Manual"
+        Icon="Icons/icon.ico">
+
     <Grid>
         <Grid.Resources>
             <DataTemplate DataType="{x:Type vms:StartupViewModel}">
